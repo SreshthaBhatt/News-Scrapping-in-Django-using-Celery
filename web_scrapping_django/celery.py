@@ -16,9 +16,11 @@ app.conf.enable_utc=False
 app.conf.update(timezone='Asia/Kolkata')
 
 app.conf.beat_schedule={
-
+ 'scraping-task-fifteen-min': {
+        'task': 'scrapping.tasks.TOI_scrapping',
+        'schedule': crontab(minute='*/5')
+    },
 }
-
 app.autodiscover_tasks()
 
 @app.task(bind=True)
